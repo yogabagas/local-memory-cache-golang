@@ -12,6 +12,7 @@ type Val struct {
 func main() {
 
 	lr := NewLRUConnection()
+	cc := NewCCConn()
 
 	// var s, t, u interface{}
 	v := &Val{
@@ -30,6 +31,9 @@ func main() {
 	lr.Set("C", v)
 	// lr.Get("C", &u)
 
+	cc.Set("A", v)
+
 	fmt.Println(lr.Get("A"), lr.Get("B"), lr.Get("C"), lr.Length(), lr.Keys())
+	fmt.Println(cc.Get("A"))
 
 }

@@ -17,7 +17,7 @@ func NewLRUConnection() *LRUConn {
 	return &LRUConn{lru: arc}
 }
 
-func (l *LRUConn) Get(key string) interface{} {
+func (l *LRUConn) Get(key interface{}) interface{} {
 	if v, ok := l.lru.Get(key); ok {
 		return v
 	}
