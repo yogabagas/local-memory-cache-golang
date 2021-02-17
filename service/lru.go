@@ -9,7 +9,7 @@ type LRUConn struct {
 }
 
 func NewLRUConnection() *LRUConn {
-	arc, err := lru.NewARC(2)
+	arc, err := lru.NewARC(1000000)
 	if err != nil {
 		return nil
 	}

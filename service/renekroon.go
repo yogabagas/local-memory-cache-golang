@@ -13,7 +13,7 @@ type TCacheConn struct {
 func NewClientConn() *TCacheConn {
 	c := tcache.NewCache()
 	c.SetCacheSizeLimit(3)
-	c.SetTTL(1 * time.Second)
+	c.SetTTL(15 * time.Second)
 	return &TCacheConn{cache: c}
 }
 

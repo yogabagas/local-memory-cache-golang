@@ -1,27 +1,30 @@
 package service
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func benchmarkRenekroonSet(key, val interface{}, t *TCacheConn, b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		t.Set(key, val)
+		t.Set(fmt.Sprintf("%d", i), val)
 	}
 }
 
 func benchmarkRenekroonGet(key interface{}, t *TCacheConn, b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		t.Get(key)
+		t.Get(fmt.Sprintf("%d", i))
 	}
 }
 
-func BenchmarkRenekroonA(b *testing.B) {
+func BenchmarkRenekroonSampleA(b *testing.B) {
 	r := NewClientConn()
-	benchmarkRenekroonSet("A", "Hello", r, b)
-	benchmarkRenekroonGet("A", r, b)
+	benchmarkRenekroonSet(nil, "Hello", r, b)
+	benchmarkRenekroonGet(nil, r, b)
 }
 
-func BenchmarkRenekroonB(b *testing.B) {
+func BenchmarkRenekroonSampleB(b *testing.B) {
 	r := NewClientConn()
-	benchmarkRenekroonSet("B", "World", r, b)
-	benchmarkRenekroonGet("B", r, b)
+	benchmarkRenekroonSet(nil, "World", r, b)
+	benchmarkRenekroonGet(nil, r, b)
 }

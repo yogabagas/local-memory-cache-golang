@@ -1,6 +1,9 @@
 package service
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 // func TestLRUCache(t *testing.T) {
 
@@ -24,24 +27,24 @@ import "testing"
 
 func benchmarkLRUSet(key, val interface{}, lru *LRUConn, b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		lru.Set(key, val)
+		lru.Set(fmt.Sprintf("%d", i), val)
 	}
 }
 
 func benchmarkLRUGet(key interface{}, lru *LRUConn, b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		lru.Get(key)
+		lru.Get(fmt.Sprintf("%d", i))
 	}
 }
 
-func BenchmarkLRUA(b *testing.B) {
+func BenchmarkLRUSampleA(b *testing.B) {
 	lru := NewLRUConnection()
-	benchmarkLRUSet("A", "Hello", lru, b)
-	benchmarkLRUGet("A", lru, b)
+	benchmarkLRUSet(nil, "Hello", lru, b)
+	benchmarkLRUGet(nil, lru, b)
 }
 
-func BenchmarkLRUB(b *testing.B) {
+func BenchmarkLRUSampleB(b *testing.B) {
 	lru := NewLRUConnection()
-	benchmarkLRUSet("B", "World", lru, b)
-	benchmarkLRUGet("B", lru, b)
+	benchmarkLRUSet(nil, "World", lru, b)
+	benchmarkLRUGet(nil, lru, b)
 }

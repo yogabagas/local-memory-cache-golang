@@ -11,7 +11,7 @@ type CcacheConn struct {
 }
 
 func NewCCConn() *CcacheConn {
-	c := cc.New(cc.Configure().MaxSize(10).GetsPerPromote(5))
+	c := cc.New(cc.Configure().MaxSize(1000000).GetsPerPromote(5))
 	return &CcacheConn{cache: c}
 }
 

@@ -1,6 +1,7 @@
 package service
 
 import (
+	"fmt"
 	"testing"
 )
 
@@ -26,23 +27,23 @@ import (
 
 func benchmarkCCSet(key, val interface{}, cc *CcacheConn, b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		cc.Set(key, val)
+		cc.Set(fmt.Sprintf("%d", i), val)
 	}
 }
 
 func benchmarkCCGet(key interface{}, cc *CcacheConn, b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		cc.Get(key)
+		cc.Get(fmt.Sprintf("%d", i))
 	}
 }
 
-func BenchmarkCCA(b *testing.B) {
+func BenchmarkCCASampleA(b *testing.B) {
 	cc := NewCCConn()
 	benchmarkCCSet("A", "Hello", cc, b)
 	benchmarkCCGet("A", cc, b)
 }
 
-func BenchmarkCCB(b *testing.B) {
+func BenchmarkCCASampleB(b *testing.B) {
 	cc := NewCCConn()
 	benchmarkCCSet("B", "World", cc, b)
 	benchmarkCCGet("B", cc, b)

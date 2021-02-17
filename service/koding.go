@@ -39,7 +39,7 @@ type CacheSharedConn struct {
 
 func NewShardedCacheWithTTL() *CacheSharedConn {
 	s := kcache.NewShardedCacheWithTTL(5*time.Millisecond, func() kcache.Cache {
-		return cache.NewLRU(100)
+		return cache.NewLRU(1000000)
 	})
 	return &CacheSharedConn{shared: s}
 }
