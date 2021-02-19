@@ -9,7 +9,7 @@ type LRUConn struct {
 }
 
 func NewLRUConnection() *LRUConn {
-	arc, err := lru.NewARC(1000000)
+	arc, err := lru.NewARC(3)
 	if err != nil {
 		return nil
 	}
@@ -50,9 +50,3 @@ func (l *LRUConn) BulkSet(key interface{}, values []interface{}) {
 		l.lru.Add(key, v)
 	}
 }
-
-// func (l *LRUConn) BulkGet(key interface{})  {
-// 	if v, ok := l.lru.Get(key); ok {
-// 		*val = append(*val, v)
-// 	}
-// }

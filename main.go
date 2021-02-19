@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	. "my-github/local-memory-cache-using-lru/service"
+	. "my-github/local-memory-cache-golang/service"
 )
 
 type Val struct {

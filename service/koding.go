@@ -12,7 +12,7 @@ type CacheConn struct {
 }
 
 func NewConnKCache() *CacheConn {
-	c := kcache.NewMemoryWithTTL(time.Duration(1 * time.Second))
+	c := kcache.NewMemoryWithTTL(time.Duration(5 * time.Second))
 
 	return &CacheConn{cache: c}
 }
@@ -38,8 +38,8 @@ type CacheSharedConn struct {
 }
 
 func NewShardedCacheWithTTL() *CacheSharedConn {
-	s := kcache.NewShardedCacheWithTTL(5*time.Millisecond, func() kcache.Cache {
-		return cache.NewLRU(1000000)
+	s := kcache.NewShardedCacheWithTTL(5*time.Second, func() kcache.Cache {
+		return cache.NewLRU(3)
 	})
 	return &CacheSharedConn{shared: s}
 }
